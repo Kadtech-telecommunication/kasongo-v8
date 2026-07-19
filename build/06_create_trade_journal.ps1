@@ -1,4 +1,13 @@
-﻿"""
+$ErrorActionPreference = "Stop"
+
+$root = "kasongo\database"
+
+if (-not (Test-Path $root)) {
+    throw "Database folder not found: $root"
+}
+
+@'
+"""
 KASONGO V8
 Trade Journal Repository
 """
@@ -112,3 +121,13 @@ class TradeJournal:
             .count()
         )
 
+'@ | Set-Content -Encoding UTF8 "$root\trade_journal.py"
+
+Write-Host ""
+Write-Host "======================================="
+Write-Host " KASONGO V8 TRADE JOURNAL CREATED"
+Write-Host "======================================="
+Write-Host ""
+Write-Host "Generated:"
+Write-Host " - trade_journal.py"
+Write-Host ""

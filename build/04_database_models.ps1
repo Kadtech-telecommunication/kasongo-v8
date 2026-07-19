@@ -1,4 +1,13 @@
-﻿"""
+$ErrorActionPreference = "Stop"
+
+$root = "kasongo\database"
+
+if (-not (Test-Path $root)) {
+    throw "Database folder not found: $root"
+}
+
+@'
+"""
 KASONGO V8
 Database Models
 """
@@ -219,3 +228,19 @@ class MarketSnapshot(BaseModel):
     volatility: Mapped[float] = mapped_column(Float)
 
     volume: Mapped[float] = mapped_column(Float)
+'@ | Set-Content -Encoding UTF8 "$root\models.py"
+
+Write-Host ""
+Write-Host "=========================================="
+Write-Host " KASONGO V8 DATABASE MODELS CREATED"
+Write-Host "=========================================="
+Write-Host ""
+Write-Host "Generated:"
+Write-Host " - BaseModel"
+Write-Host " - User"
+Write-Host " - Trade"
+Write-Host " - Signal"
+Write-Host " - StrategyPerformance"
+Write-Host " - LearningRecord"
+Write-Host " - MarketSnapshot"
+Write-Host ""
